@@ -4,7 +4,7 @@ import { NavLink, withRouter } from 'react-router-dom';
 
 const MainNav = () => {
   return (
-    <Navbar>
+    <Navbar bg='light' variant='light' style={{ marginBottom: '20px'}} >
       <Navbar.Brand href='/'>Would you Rather?</Navbar.Brand>
       <Navbar.Toggle />
       <Nav className='mr-auto'>
@@ -18,14 +18,14 @@ const MainNav = () => {
           Leaderboard
         </NavLink>
       </Nav>
-      <Navbar.Collapse className='justify-content-end'>
+      <Navbar className='justify-content-end'>
         <Navbar.Text>
-          Hello, <NavLink to='/logout'>Eakmotion</NavLink>
+          Hello, <NavLink to='/login'>Eakmotion</NavLink>
         </Navbar.Text>
-        <NavLink to='/logout' activeClassName='active' className='nav-link'>
+        <NavLink to='/login' activeClassName='active' className='nav-link'>
           Logout
         </NavLink>
-      </Navbar.Collapse>
+      </Navbar>
     </Navbar>
   );
 };

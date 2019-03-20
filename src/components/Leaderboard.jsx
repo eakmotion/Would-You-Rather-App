@@ -1,11 +1,12 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import Leader from './Leader'
 
 class Leaderboard extends Component {
   render() {
     return (
-      <h3>Leaderboard</h3>
-    )
+      <Leader />
+    );
   }
 }
 
-export default Leaderboard
+export default Leaderboard;
