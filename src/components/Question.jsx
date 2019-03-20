@@ -4,14 +4,13 @@ import { connect } from 'react-redux';
 
 class Question extends Component {
   render() {
-    const { question } = this.props;
+    const { question, authorAvatar } = this.props;
 
     if (question === undefined) {
       return <p className='center'>Question doesn't existed.</p>;
     }
 
     const { author, optionOne, optionTwo } = question;
-
     return (
       <Row className='justify-content-md-center'>
         <Card>
@@ -22,7 +21,7 @@ class Question extends Component {
                 style={{ marginRight: '20px' }}
                 width={150}
                 height={150}
-                src='http://placehold.it/250x250'
+                src={authorAvatar || 'http://placehold.it/100x100'}
                 alt='Generic placeholder'
                 roundedCircle
                 thumbnail
@@ -47,11 +46,12 @@ class Question extends Component {
   }
 }
 
-function mapStateToProps({ questions }, props) {
+function mapStateToProps({ users, questions }, props) {
   const { id } = props.match.params;
   const question = questions[id];
   return {
-    question
+    question,
+    authorAvatar : question && users[question.author] ? users[question.author].avatarURL : null
   };
 }
 
