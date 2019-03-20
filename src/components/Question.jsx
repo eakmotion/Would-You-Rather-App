@@ -1,16 +1,25 @@
 import React, { Component } from 'react';
-import { Row, Image, Media, Col, Form, Card, Button } from 'react-bootstrap';
+import { Row, Image, Media, Form, Card, Button } from 'react-bootstrap';
+import { connect } from 'react-redux';
 
 class Question extends Component {
   render() {
+    const { question } = this.props;
+
+    if (question === undefined) {
+      return <p className='center'>Question doesn't existed.</p>;
+    }
+
+    const { author, optionOne, optionTwo } = question;
+
     return (
       <Row className='justify-content-md-center'>
         <Card>
-          <Card.Header as='h5'>Tyler McGin asks:</Card.Header>
+          <Card.Header as='h5'>{`${author} asks:`}</Card.Header>
           <Card.Body>
             <Media>
               <Image
-                style={{ marginRight: '20px'}}
+                style={{ marginRight: '20px' }}
                 width={150}
                 height={150}
                 src='http://placehold.it/250x250'
@@ -22,20 +31,8 @@ class Question extends Component {
                 <h5>Would you rather ..</h5>
                 <Form>
                   <Form.Group>
-                    <Col>
-                      <Form.Check
-                        type='radio'
-                        label='find $50 yourself'
-                        name='formHorizontalRadios'
-                        id='formHorizontalRadios1'
-                      />
-                      <Form.Check
-                        type='radio'
-                        label='have your bestfriend find $500'
-                        name='formHorizontalRadios'
-                        id='formHorizontalRadios2'
-                      />
-                    </Col>
+                    <Form.Check type='radio' label={optionOne.text} name='answer' />
+                    <Form.Check type='radio' label={optionTwo.text} name='answer' />
                   </Form.Group>
                   <Button variant='primary' type='submit'>
                     Submit
@@ -50,4 +47,12 @@ class Question extends Component {
   }
 }
 
-export default Question;
+function mapStateToProps({ questions }, props) {
+  const { id } = props.match.params;
+  const question = questions[id];
+  return {
+    question
+  };
+}
+
+export default connect(mapStateToProps)(Question);
