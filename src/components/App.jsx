@@ -9,6 +9,7 @@ import { Container } from 'react-bootstrap';
 import MainNav from './MainNav';
 import AddQuestion from './AddQuestion';
 import { handleInitialData } from '../actions/shared';
+import { LoadingBar } from 'react-redux-loading-bar'
 import { connect } from 'react-redux';
 
 class App extends Component {
@@ -20,6 +21,7 @@ class App extends Component {
     return (
       <Router>
         <Container>
+          <LoadingBar />
           <MainNav />
           <Route path='/' exact component={Home} />
           <Route path='/question/:id'>
