@@ -8,8 +8,14 @@ import Login from './Login';
 import { Container } from 'react-bootstrap';
 import MainNav from './MainNav';
 import AddQuestion from './AddQuestion';
+import { handleInitialData } from '../actions/shared';
+import { connect } from 'react-redux';
 
 class App extends Component {
+  componentDidMount() {
+    this.props.dispatch(handleInitialData());
+  }
+
   render() {
     return (
       <Router>
@@ -31,4 +37,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default connect()(App);
