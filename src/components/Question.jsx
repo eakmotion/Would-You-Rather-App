@@ -22,7 +22,7 @@ class Question extends Component {
                 width={150}
                 height={150}
                 src={authorAvatar || 'http://placehold.it/100x100'}
-                alt='Generic placeholder'
+                alt={author}
                 roundedCircle
                 thumbnail
               />
