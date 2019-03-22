@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Home from './Home';
-import Question from './Question';
+import QuestionPage from './QuestionPage';
 import Answer from './Answer';
 import Leaderboard from './Leaderboard';
 import Login from './Login';
@@ -27,7 +27,7 @@ class App extends Component {
           <Route path='/question/:id'>
             <Switch>
               <Route path='/question/add' exact component={AddQuestion} />
-              <Route path='/question/:id' component={Question} />
+              <Route path='/question/:id' component={QuestionPage} />
             </Switch>
           </Route>
           <Route path='/question/:id/answer' exact component={Answer} />
