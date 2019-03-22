@@ -38,13 +38,13 @@ class Leader extends Component {
                   <ListGroupItem>
                     Answered Questions{' '}
                     <Badge pill variant='secondary'>
-                      {user.questions.length}
+                      {Object.keys(user.answers).length}
                     </Badge>
                   </ListGroupItem>
                   <ListGroupItem>
                     Created Questions{' '}
                     <Badge pill variant='secondary'>
-                      {Object.keys(user.answers).length}
+                      {user.questions.length}
                     </Badge>
                   </ListGroupItem>
                 </ListGroup>
