@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { ListGroup, ListGroupItem, Badge, Row, Card, Media, Image } from 'react-bootstrap';
+import { ListGroup, ListGroupItem, Badge, Row, Card, Media } from 'react-bootstrap';
 import { getNumberWithOrdinal, getTotalScore } from '../utils/helpers';
+import AvatarImage from './AvatarImage';
 
 class Leader extends Component {
   render() {
@@ -23,14 +24,7 @@ class Leader extends Component {
           </Card.Header>
           <Card.Body>
             <Media>
-              <Image
-                width={150}
-                height={150}
-                src={user.avatarURL || 'http://placehold.it/250x250'}
-                alt={user.name}
-                roundedCircle
-                thumbnail
-              />
+              <AvatarImage author={user.id} />
               <Media.Body>
                 <ListGroup
                   className='list-group-flush'

@@ -1,5 +1,6 @@
 import React from 'react';
-import { ProgressBar, Badge, Row, Image, Media, Card } from 'react-bootstrap';
+import { ProgressBar, Badge, Row, Media, Card } from 'react-bootstrap';
+import AvatarImage from './AvatarImage';
 
 const votePercentage = (option, total) => {
   return (option / total * 100).toFixed(1);
@@ -37,30 +38,25 @@ const AnswerCard = ({ option, optionCount, total, topAnswer, userAnswer }) => {
   );
 };
 
-const Answer = ({ user, question, questionAvatar }) => {
+const Answer = ({ user, question }) => {
   const { author, optionOne, optionTwo } = question;
   const userAnswer = user.answers[question.id];
   const optionOneCount = optionOne.votes.length;
   const optionTwoCount = optionTwo.votes.length;
   const total = optionOneCount + optionTwoCount;
 
-  const topAnswer = optionOneCount > optionTwoCount ? 'optionOne' : 'optionTwo';
+  const topAnswer =
+    optionOneCount === optionTwoCount
+      ? null
+      : optionOneCount > optionTwoCount ? 'optionOne' : 'optionTwo';
 
   return (
     <Row className='justify-content-md-center'>
-      <Card>
+      <Card style={{ width: '500px', margin: '10px 0' }}>
         <Card.Header as='h5'>Asked by {author}</Card.Header>
         <Card.Body>
           <Media>
-            <Image
-              style={{ marginRight: '20px' }}
-              width={150}
-              height={150}
-              src={questionAvatar || 'http://placehold.it/250x250'}
-              alt={author}
-              roundedCircle
-              thumbnail
-            />
+            <AvatarImage author={author} style={{ marginRight: '20px' }} />
             <Media.Body>
               <h5>Results:</h5>
               <div>

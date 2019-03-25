@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { Row, Card, Dropdown, Image, Media, Button } from 'react-bootstrap';
+import { Row, Card, Dropdown, Media, Button } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { setAuthedUser, removeAuthedUser } from '../actions/authedUser';
+import AvatarImage from './AvatarImage';
 
 class Login extends Component {
   handleChange = (e) => {
@@ -28,14 +29,9 @@ class Login extends Component {
           </Card.Subtitle>
           {authedUser &&
           users[authedUser] && (
-            <Image
-              style={{ margin: '0 auto' }}
-              width={150}
-              height={150}
-              src={users[authedUser].avatarURL}
-              alt={users[authedUser].name}
-              roundedCircle
-            />
+            <div style={{ textAlign: 'center' }}>
+              <AvatarImage author={authedUser} />
+            </div>
           )}
           <Card.Body>
             <Card.Title className='center'>{authedUser ? 'Switch Users' : 'Sign In'}</Card.Title>
@@ -49,13 +45,11 @@ class Login extends Component {
                   Object.values(users).map((user) => (
                     <Dropdown.Item eventKey={user.id} key={user.id}>
                       <Media>
-                        <Image
-                          style={{ marginRight: '10px' }}
-                          width={30}
-                          height={30}
-                          src={user.avatarURL}
-                          alt={user.name}
-                          roundedCircle
+                        <AvatarImage
+                          author={user.id}
+                          isThumbnail={false}
+                          size={30}
+                          style={{ marginRight: '10px', padding: '0' }}
                         />
                         <Media.Body>{user.name}</Media.Body>
                       </Media>

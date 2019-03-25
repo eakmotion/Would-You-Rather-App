@@ -6,7 +6,9 @@ import { Redirect } from 'react-router-dom';
 
 class AddQuestion extends Component {
   state = {
-    toHome : false
+    toHome    : false,
+    optionOne : false,
+    optionTwo : false
   };
 
   handleSubmit = (e) => {
@@ -22,10 +24,18 @@ class AddQuestion extends Component {
     });
   };
 
+  handleChange = (e) => {
+    this.setState({
+      [e.target.name]: e.target.value
+    });
+  };
+
   render() {
-    if (this.state.toHome === true) {
+    if (this.state.toHome === true || !this.props.canAdd) {
       return <Redirect to='/' />;
     }
+    const { optionOne, optionTwo } = this.state;
+    const validForm = optionOne.length > 0 && optionTwo.length > 0;
 
     return (
       <Row className='justify-content-md-center'>
@@ -40,15 +50,17 @@ class AddQuestion extends Component {
                   name='optionOne'
                   type='text'
                   placeholder='Enter option one text here'
+                  onChange={this.handleChange}
                 />
                 <Form.Text className='text-muted text-padding'>OR</Form.Text>
                 <Form.Control
                   name='optionTwo'
                   type='text'
                   placeholder='Enter option two text here'
+                  onChange={this.handleChange}
                 />
               </Form.Group>
-              <Button variant='primary' type='submit'>
+              <Button variant='primary' type='submit' disabled={!validForm}>
                 Submit
               </Button>
             </Form>
@@ -59,4 +71,8 @@ class AddQuestion extends Component {
   }
 }
 
-export default connect()(AddQuestion);
+const mapStateToProps = ({ authedUser }) => {
+  return { canAdd: authedUser ? true : false };
+};
+
+export default connect(mapStateToProps)(AddQuestion);

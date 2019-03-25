@@ -14,7 +14,7 @@ class QuestionPage extends Component {
   };
 
   render() {
-    const { question, questionAvatar, answered, user } = this.props;
+    const { question, answered, user } = this.props;
 
     if (question === undefined) {
       return <p className='center'>Question doesn't existed.</p>;
@@ -23,13 +23,9 @@ class QuestionPage extends Component {
     return (
       <div>
         {answered ? (
-          <Answer question={question} questionAvatar={questionAvatar} user={user} />
+          <Answer question={question} user={user} />
         ) : (
-          <Question
-            question={question}
-            questionAvatar={questionAvatar}
-            handleSubmit={this.handleSubmit}
-          />
+          <Question question={question} handleSubmit={this.handleSubmit} />
         )}
       </div>
     );
@@ -42,9 +38,8 @@ function mapStateToProps({ users, questions, authedUser }, props) {
 
   return {
     question,
-    user           : users[authedUser],
-    questionAvatar : question && users[question.author] ? users[question.author].avatarURL : null,
-    answered       :
+    user     : users[authedUser],
+    answered :
       question &&
       users[authedUser] &&
       Object.keys(users[authedUser].answers).filter((answer) => answer === question.id)[0]

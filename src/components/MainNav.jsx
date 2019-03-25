@@ -20,9 +20,9 @@ class MainNav extends Component {
           <NavLink to='/' exact activeClassName='active' className='nav-link'>
             Home
           </NavLink>
-          <NavLink to='question/add' activeClassName='active' className='nav-link'>
+          {authedUser && <NavLink to='question/add' activeClassName='active' className='nav-link'>
             New Question
-          </NavLink>
+          </NavLink>}
           <NavLink to='/leaderboard' activeClassName='active' className='nav-link'>
             Leaderboard
           </NavLink>
