@@ -1,9 +1,9 @@
-# [Udacity React Nanodegree](#)
+# [Udacity React Nanodegree](https://nd019-would-you-rather.herokuapp.com)
 
 ### Project Two
-### MyReads : Would You Rather App
+### Would You Rather App
 
-Deployed on heroku: ...
+Deployed on heroku: [nd019-would-you-rather.herokuapp.com](https://nd019-would-you-rather.herokuapp.com)
 
 Would You Rather app is an app that allows you to play the "Would You Rather?" game. The game goes like this: A user is asked a question in the form: "Would you rather [option A] or [option B] ?". Answering "neither" or "both" is against the rules.
 
